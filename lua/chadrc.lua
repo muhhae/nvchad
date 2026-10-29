@@ -6,8 +6,10 @@
 local M = {}
 
 M.base46 = {
-  theme = "catppuccin",
-
+  theme = "aquarium",
+  hl_add = {},
+  integrations = {},
+  transparency = true,
   hl_override = {
     Comment = { italic = true },
     ["@comment"] = { italic = true },
@@ -43,10 +45,10 @@ M.ui = {
 
   -- lazyload it when there are 1+ buffers
   tabufline = {
-    enabled = true,
+    enabled = false,
     lazyload = true,
     treeOffsetFt = "NvimTree",
-    order = { "treeOffset", "buffers", "tabs", "btns" },
+    order = { "treeOffset", "buffers", "tabs" },
     modules = nil,
     bufwidth = 21,
   },
@@ -71,14 +73,20 @@ M.nvdash = {
   },
 
   buttons = {
-    { txt = "  Find File", keys = "Spc f f", cmd = "Telescope find_files" },
-    { txt = "  Recent Files", keys = "Spc f o", cmd = "Telescope oldfiles" },
-    -- more... check nvconfig.lua file for full list of buttons
+    { txt = "  Find File", keys = "f", cmd = "Telescope find_files" },
+    { txt = "  Recent Files", keys = "r", cmd = "Telescope oldfiles" },
+    { txt = "  Sessions", keys = "s", cmd = "Telescope session-lens" },
+    {
+      txt = "󱐋  Zoxide",
+      keys = "z",
+      cmd = "lua require('telescope').extensions.zoxide.list()",
+    },
+    { txt = "  Current Directory", keys = "d", cmd = "Neotree" },
   },
 }
 
-term = {
-  base46_colors = true,
+M.term = {
+  base46_colors = false,
   winopts = { number = false },
   sizes = { sp = 0.3, vsp = 0.2, ["bo sp"] = 0.3, ["bo vsp"] = 0.2 },
   float = {
@@ -91,16 +99,16 @@ term = {
   },
 }
 
-lsp = { signature = true }
+M.lsp = { signature = true }
 
-cheatsheet = {
+M.cheatsheet = {
   theme = "grid", -- simple/grid
   excluded_groups = {}, -- can add group name or with mode
 }
 
-mason = { pkgs = {}, skip = {} }
+M.mason = { pkgs = {}, skip = {} }
 
-colorify = {
+M.colorify = {
   enabled = true,
   mode = "virtual", -- fg, bg, virtual
   virt_text = "󱓻 ",
